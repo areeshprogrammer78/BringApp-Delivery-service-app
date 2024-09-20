@@ -7,7 +7,6 @@ class SimpleAppBar extends StatelessWidget {
   String? title;
   SimpleAppBar({Key? key, this.bottom, this.title}) : super(key: key);
 
-  @override
   Size get preferredSize => bottom == null
       ? Size(56, AppBar().preferredSize.height)
       : Size(56, 80 + AppBar().preferredSize.height);
