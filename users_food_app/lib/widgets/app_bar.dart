@@ -1,27 +1,21 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:users_food_app/assistantMethods/cart_item_counter.dart';
-import 'package:users_food_app/screens/cart_screen.dart';
 
-class MyAppBar extends StatefulWidget with PreferredSizeWidget {
+class SimpleAppBar extends StatelessWidget {
   final PreferredSizeWidget? bottom;
-  final String? sellerUID;
-  MyAppBar({Key? key, this.bottom, this.sellerUID}) : super(key: key);
+  String? title;
+  SimpleAppBar({Key? key, this.bottom, this.title}) : super(key: key);
 
-  @override
-  _MyAppBarState createState() => _MyAppBarState();
-
-  @override
   Size get preferredSize => bottom == null
       ? Size(56, AppBar().preferredSize.height)
       : Size(56, 80 + AppBar().preferredSize.height);
-}
 
-class _MyAppBarState extends State<MyAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 0,
       flexibleSpace: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -34,63 +28,22 @@ class _MyAppBarState extends State<MyAppBar> {
           ),
         ),
       ),
-      actions: [
-        Stack(
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (c) => CartScreen(sellerUID: widget.sellerUID),
-                  ),
-                );
-              },
-              icon: const Icon(
-                Icons.shopping_cart,
-                color: Colors.orange,
-              ),
-            ),
-            Positioned(
-              child: Stack(
-                children: [
-                  const Icon(
-                    Icons.brightness_1,
-                    size: 20,
-                    color: Colors.green,
-                  ),
-                  Positioned(
-                    top: 3,
-                    right: 4,
-                    child: Center(
-                      child: Consumer<CartItemCounter>(
-                          builder: (context, counter, c) {
-                        return Text(
-                          counter.count.toString(),
-                          style: GoogleFonts.lato(
-                            textStyle: const TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        );
-                      }),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        )
-      ],
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios_new_rounded),
-        onPressed: () {
-          Navigator.pop(context);
-        },
+      title: Text(
+        "Item Details",
+        style: GoogleFonts.lato(
+          textStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
       ),
+      centerTitle: true,
       automaticallyImplyLeading: true,
-      elevation: 0,
+      iconTheme: const IconThemeData(
+        color: Colors.black,
+        size: 35,
+      ),
     );
   }
 }

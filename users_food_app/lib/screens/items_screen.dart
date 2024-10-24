@@ -25,7 +25,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: MyAppBar(sellerUID: widget.model!.sellerUID),
+        child: SimpleAppBar(title: widget.model!.sellerUID),
       ),
       body: Container(
         decoration: const BoxDecoration(

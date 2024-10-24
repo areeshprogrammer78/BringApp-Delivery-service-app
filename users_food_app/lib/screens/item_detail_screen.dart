@@ -22,7 +22,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: MyAppBar(sellerUID: widget.model!.sellerUID),
+        child: SimpleAppBar(title: widget.model!.sellerUID),
       ),
       body: SingleChildScrollView(
         child: Column(
